@@ -1,18 +1,20 @@
 # ETSMLP
 This repository provides the implementation for the paper "Incorporating Exponential Smoothing into MLP: a Simple but Effective Sequence Model".
+
 ![alt text](images/GESMLP.png)
+
 The core code of CETS module is [smlp_module.py](module/smlp_module.py)
 
-#Requirement
+## Requirement
 - Python version >=3.6
 - Pytorch version >=1.9.0
 - [Fairseq](https://github.com/facebookresearch/fairseq) version  >= 0.10.1
 
-#Dataset Download
+## Dataset Download
 Downloading the raw data of LRA should follow the instruction of [Mega](https://github.com/facebookresearch/mega/blob/main/examples/mega/README.lra.md)
 Downloading the raw data of CoLa,SST-2, IMDB, QQP, MRPC, MNLI, QNLI should follow the instruction of [Fairseq](https://github.com/facebookresearch/fairseq/blob/main/examples/roberta/README.glue.md)
 
-#Pepository structure
+## Pepository structure
 Directories and files that ship with the repo:
 ```
 architectures/        Source code for models
@@ -25,8 +27,8 @@ module/               Source code for utilized modules
 optims                Source code for optimization
 task                  Source code for LRA tasks.  
 ```
-#Training Example
-## Example 1(ListOps)
+## Training Example
+### Example 1(ListOps)
 ```bash
 data=path/to/data
 save=path/to/save
@@ -47,7 +49,7 @@ fairseq-train ${data} \
 --warmup-updates 3000 --warmup-init-lr '1e-07' --keep-last-epochs 1 --required-batch-size-multiple 1 \
  --log-interval 100 --num-workers 8
 ```
-## Example 2(MNLI)
+### Example 2(MNLI)
 ```bash
 data=path/to/data
 save=path/to/save
@@ -72,7 +74,7 @@ fairseq-train ${data} \
 --find-unused-parameters \
 --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
 ```
-##Tips
+### Tips
 1. The models must be trained with float32.
 2. Weight decay (wd) and learning rate have significant influence on the result. Therefore, you'd better tune them first.
 3. For Path-X dataset, an extra normalization is used following the instruction of LRU. You should be careful if the loss begin to decrease after around 100000 steps.
